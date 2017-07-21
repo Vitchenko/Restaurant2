@@ -5,7 +5,8 @@ package com.home.viv;
  */
 public class Tablet {
 
-    private final int number;
+    public int number;
+
 
     public Tablet() {
         number = 0;

@@ -33,7 +33,7 @@ public class ConsoleHelper {
         return bufferedReader.readLine();
     }
 
-    public static List<Dish> getAllDishesForOrder() throws IOException {
+    public static ArrayList<Dish> getAllDishesForOrder() throws IOException {
 
         ArrayList<Dish> allDishforOrder=new ArrayList();
 
