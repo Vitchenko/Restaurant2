@@ -1,5 +1,7 @@
 package com.home.viv;
 
+import com.home.viv.kitchen.Order;
+
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,9 +25,22 @@ public class Tablet {
     }
 
     public void createOrder(){
-        try{
 
-        }
+        Order order = null;
+
+        try {
+
+                order = new Order(this);
+                ConsoleHelper.writeMessage(order.toString());
+
+//                if(!order.isEmpty()) {
+//                    AdvertisementManager advertisementManager = new AdvertisementManager(order.getTotalCookingTime() * 60);
+//                    setChanged();
+//                    notifyObservers(order);
+//                    advertisementManager.processVideos();
+//                }
+            }
+
         catch (Exception ex){
             log.log(Level.SEVERE, "Exception: ", ex);
         }

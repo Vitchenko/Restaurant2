@@ -15,8 +15,8 @@ public class Restaurant {
     public static void main(String[] args) throws IOException {
 
         Tablet tablet=new Tablet(3);
-        Order order=new Order(tablet);
-        System.out.println(order.toString());
+        tablet.createOrder();
+
 
     }
 
