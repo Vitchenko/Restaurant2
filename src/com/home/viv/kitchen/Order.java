@@ -25,14 +25,15 @@ import java.util.ArrayList;
  */
 public class Order {
 
-    Tablet tablet=new Tablet();//???
 
+    private Tablet tablet;
 
 
     ArrayList<Dish> dishes = new ArrayList<>();
 
-    public Order() throws IOException {
+    public Order(Tablet tablet) throws IOException {
         this.dishes = ConsoleHelper.getAllDishesForOrder();
+        this.tablet=tablet;
     }
 
 
