@@ -1,21 +1,16 @@
 package com.home.viv;
 
 import com.home.viv.kitchen.Order;
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
 
-import java.io.IOException;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- 5. У нас все завязано на работу с консолью. Однако, при возникновении исключений, наше приложение умрет.
- Чтобы узнать причину - добавим в Tablet статический логгер java.util.logging.Logger, инициализированный
- именем класса.
- 6. В методе createOrder класса Tablet обработаем исключения ввода-вывода.
- Запишем в лог "Console is unavailable.". Уровень лога - SEVERE - это самый серьезный уровень, мы не
- можем работать.
-
- */
-public class Tablet {
+  */
+public class Tablet extends java.util.Observable implements Observable {
 
     public int number;
     private static Logger log = Logger.getLogger(Tablet.class.getName());
@@ -30,19 +25,29 @@ public class Tablet {
 
         try {
 
-                order = new Order(this);
-                ConsoleHelper.writeMessage(order.toString());
-
-//                if(!order.isEmpty()) {
-//                    AdvertisementManager advertisementManager = new AdvertisementManager(order.getTotalCookingTime() * 60);
-//                    setChanged();
-//                    notifyObservers(order);
-//                    advertisementManager.processVideos();
-//                }
-            }
-
+            order = new Order(this);
+            ConsoleHelper.writeMessage(order.toString());
+        }
         catch (Exception ex){
             log.log(Level.SEVERE, "Exception: ", ex);
         }
+    }
+
+    @Override
+    public void addListener(InvalidationListener listener) {
+
+    }
+
+    @Override
+    public void removeListener(InvalidationListener listener) {
+
+    }
+
+
+    @Override
+    public String toString() {
+        return "Tablet{" +
+                "number=" + number +
+                '}';
     }
 }
