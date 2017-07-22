@@ -10,7 +10,7 @@ import java.util.logging.Logger;
 
 /**
   */
-public class Tablet extends java.util.Observable implements Observable {
+public class Tablet extends java.util.Observable {
 
     public int number;
     private static Logger log = Logger.getLogger(Tablet.class.getName());
@@ -27,21 +27,16 @@ public class Tablet extends java.util.Observable implements Observable {
 
             order = new Order(this);
             ConsoleHelper.writeMessage(order.toString());
+
+            setChanged();
+            notifyObservers(order);
+
         }
         catch (Exception ex){
             log.log(Level.SEVERE, "Exception: ", ex);
         }
     }
 
-    @Override
-    public void addListener(InvalidationListener listener) {
-
-    }
-
-    @Override
-    public void removeListener(InvalidationListener listener) {
-
-    }
 
 
     @Override
@@ -50,4 +45,6 @@ public class Tablet extends java.util.Observable implements Observable {
                 "number=" + number +
                 '}';
     }
+
+
 }

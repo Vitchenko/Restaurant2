@@ -6,9 +6,12 @@ import java.util.Observable;
 import java.util.Observer;
 
 /**
- * Created by viv on 21.07.2017.
+ 4. В классе-Observable перед отправкой заказа сделаем следующее:
+ 4.1. Установим флаг setChanged()
+ 4.2. Отправим обсерверу заказ notifyObservers(order);
+
  */
-public class Cook implements Observer {
+public class Cook extends Observable implements Observer {
     String name;
 
     public Cook(String name) {
@@ -19,14 +22,15 @@ public class Cook implements Observer {
     public String toString() {
         return "Cook{" + "name='" + name + '\'' + '}';
     }
-/**3. Метод void update(Observable observable, Object arg), который необходимо реализовать,
- принимает два параметра.
- -observable - объект, который отправил нам значение
- -arg - само значение, в нашем случае - это объект Order
- На данном этапе мы сымитируем обработку и выведем в консоль "Start cooking - " + order
- */
+
     @Override
     public void update(Observable o, Object arg) {
-        ConsoleHelper.writeMessage("Start cooking - " + arg);
+
+        /**Start cooking - Your order: [Soup, Juice, Water] of Tablet{number=5}, cooking time 23min*/
+        Order order;
+        order=(Order)arg;
+        ConsoleHelper.writeMessage("Start cooking - " + arg + ", cooking time " +order.getTotalCookingTime()+"min");
+        setChanged();
+        notifyObservers(arg);
     }
 }
