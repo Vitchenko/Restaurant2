@@ -10,15 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- 1. Мы много работаем с консолью. Пора создать единую точку взаимодействия.
- Создайте класс ConsoleHelper с единственным BufferedReader, через который будете работать с консолью.
- Запомните, этот класс не хранит никаких данных и состояний, поэтому все методы будут статическими.
- Создайте в нем три метода:
- -writeMessage(String message) - для вывода message в консоль
- -String readString() - для чтения строки с консоли
- -List<Dish> getAllDishesForOrder() - просит ползователя выбрать блюдо и добавляет его в список.
- Введенное 'exit' означает завершение заказа.
- исключения пробрасывайте выше, на этом уровне не понятно, что с ними делать.
+
  */
 public class ConsoleHelper {
 
@@ -43,9 +35,21 @@ public class ConsoleHelper {
         Dish dish = null;
         String curStr;
 
+/*4. Запустим приложение и введем 'fff', 'Soup' и 'exit'. В итоге наш заказ - Your order: [Soup],
+а 'fff' проигнорировано.
+Давай уведомим пользователя, что блюда 'fff' нет. Выведем аналогичную фразу
+fff is not detected*/
         while(true) {
-            if(!(curStr=readString()).equals("exit")){
-                allDishforOrder.add(dish.valueOf(curStr));
+
+            curStr=readString();
+
+            if(!curStr.equals("exit")){
+                try {
+                    allDishforOrder.add(Dish.valueOf(curStr));
+                }
+                catch (IllegalArgumentException e) {
+                    writeMessage(curStr + " is not detected");
+                }
             }
             else break;
         }

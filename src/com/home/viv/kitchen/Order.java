@@ -30,7 +30,7 @@ public class Order {
         for(Dish dish:dishes){
             rezTime+=dish.getDuration();
         }
-        System.out.println("Duration " +rezTime );
+
         return rezTime;
     }
 
@@ -54,5 +54,14 @@ public class Order {
         }
 
         return "Your order: [" + str.toString() + "] of Tablet{number="+ tablet.number +"}";
+    }
+
+    public boolean isEmpty(){
+        boolean rezult;
+        if(dishes.size()==0)
+            {rezult=true;}
+        else
+            {rezult =false;}
+        return rezult;
     }
 }
